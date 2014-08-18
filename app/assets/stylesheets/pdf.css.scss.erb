@@ -1,0 +1,24 @@
+@import 'application';
+@import 'application/print';
+
+.pdf-only {
+  display: block;
+}
+
+input:disabled, textarea:disabled {
+  color: black;
+}
+
+.blueprint-page {
+  .blueprint-layer.text-layer {
+    font-size: 62px;
+  }
+
+  .print-button {
+    display: block;
+  }
+
+  #document_terms {
+    width: grid-width(8) - 15px;
+  }
+}

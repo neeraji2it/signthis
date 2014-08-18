@@ -1,0 +1,26 @@
+article.document = render 'documents/text', document: @document, topages: 2
+
+.signatures = render 'documents/signatures', document: @document
+
+- if defined?(@purchase) && !@document.purchased?
+  .purchase-block
+    = render 'purchase/form', purchase: @purchase, document: @document
+    #purchase-message-block
+
+= content_for :controls do
+  .controls-footer
+    .controls
+      - if signed_in?
+        - if @document.editable?
+          .link.pull-right = link_to 'Edit', [:edit, @document], class: [:button], data: {"no-turbolink" => true}
+        .link.pull-right = link_to 'Delete', @document, method: :delete, data: {confirm: 'Are you sure?'}, class: [:button, :red]
+        .link.pull-right = print_button('Print')
+        - unless @document.signed?
+          .link.pull-right = link_to 'Email for signatures', email_document_path(@document), class: :button
+      - else
+        .link.pull-right = print_button('Print')
+
+.page-footer.page3
+  .print-only Pg. 2/2
+  .print-only.image.page-footer-logo = wevorce_logo
+

@@ -1,0 +1,241 @@
+  [1m[36m (43.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying(255) NOT NULL) [0m
+  [1m[35m (84.1ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateDocuments (20131029222606)
+  [1m[35m (0.8ms)[0m  BEGIN
+  [1m[36m (72.8ms)[0m  [1mCREATE TABLE "documents" ("id" serial primary key, "architect_id" integer, "first_spouse_first_name" character varying(255), "first_spouse_last_name" character varying(255), "second_spouse_first_name" character varying(255), "second_spouse_last_name" character varying(255), "foundation_building" boolean DEFAULT 't' NOT NULL, "parenting_planning_i" boolean DEFAULT 't' NOT NULL, "fiscal_mapping" boolean DEFAULT 't' NOT NULL, "document_prepping" boolean DEFAULT 't' NOT NULL, "final_review" boolean DEFAULT 't' NOT NULL, "parenting_planning_ii" boolean DEFAULT 't' NOT NULL, "fiscal_mapping_ii" boolean DEFAULT 't' NOT NULL, "parenting_planning_iii" boolean DEFAULT 'f' NOT NULL, "fiscal_mapping_iii" boolean DEFAULT 'f' NOT NULL, "first_spouse_detour_meeting" boolean DEFAULT 'f' NOT NULL, "first_spouse_detour_meeting_description" text, "second_spouse_detour_meeting" boolean DEFAULT 'f' NOT NULL, "second_spouse_detour_meeting_description" text, "price" character varying(255), "terms" text, "first_signature" text DEFAULT '{"lines":[]}', "second_signature" text DEFAULT '{"lines":[]}', "first_signature_updated_at" timestamp, "second_signature_updated_at" timestamp, "waiting_for_first_signature" boolean DEFAULT 'f', "waiting_for_second_signature" boolean DEFAULT 'f', "created_at" timestamp, "updated_at" timestamp) [0m
+  [1m[35mSQL (19.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20131029222606"]]
+  [1m[36m (30.2ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUsers (20131029223120)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (81.6ms)[0m  [1mCREATE TABLE "users" ("id" serial primary key, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "email" character varying(255) NOT NULL, "encrypted_password" character varying(128) NOT NULL, "confirmation_token" character varying(128), "remember_token" character varying(128) NOT NULL) [0m
+  [1m[35m (46.2ms)[0m  CREATE INDEX "index_users_on_email" ON "users" ("email")
+  [1m[36m (57.7ms)[0m  [1mCREATE INDEX "index_users_on_remember_token" ON "users" ("remember_token")[0m
+  [1m[35mSQL (2.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20131029223120"]]
+  [1m[36m (30.6ms)[0m  [1mCOMMIT[0m
+Migrating to CreateDocumentsUsers (20131030225533)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (53.1ms)[0m  [1mCREATE TABLE "documents_users" ("id" serial primary key, "user_id" integer NOT NULL, "document_id" integer NOT NULL) [0m
+  [1m[35m (88.3ms)[0m  CREATE UNIQUE INDEX "index_documents_users_on_user_id_and_document_id" ON "documents_users" ("user_id", "document_id")
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20131030225533"]]
+  [1m[35m (82.3ms)[0m  COMMIT
+Migrating to CreateSignatures (20131031010346)
+  [1m[36m (2.9ms)[0m  [1mBEGIN[0m
+  [1m[35m (54.7ms)[0m  CREATE TABLE "signatures" ("id" serial primary key, "data" text DEFAULT '{"lines":[]}', "active" boolean DEFAULT 'f', "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20131031010346"]]
+  [1m[35m (38.9ms)[0m  COMMIT
+Migrating to ChangeDocumentSignatures (20131031010551)
+  [1m[36m (5.3ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.2ms)[0m  ALTER TABLE "documents" ADD COLUMN "first_spouse_signature_id" integer
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "documents" ADD COLUMN "second_spouse_signature_id" integer[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "documents" DROP "first_signature"
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "documents" DROP "second_signature"[0m
+  [1m[35m (0.5ms)[0m  ALTER TABLE "documents" DROP "first_signature_updated_at"
+  [1m[36m (0.3ms)[0m  [1mALTER TABLE "documents" DROP "second_signature_updated_at"[0m
+  [1m[35m (0.4ms)[0m  ALTER TABLE "documents" DROP "waiting_for_second_signature"
+  [1m[36m (0.6ms)[0m  [1mALTER TABLE "documents" DROP "waiting_for_first_signature"[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20131031010551"]]
+  [1m[36m (33.6ms)[0m  [1mCOMMIT[0m
+Migrating to RemoveDocumentsUser (20131101093716)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (1.4ms)[0m  [1mDROP TABLE "documents_users"[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20131101093716"]]
+  [1m[36m (44.6ms)[0m  [1mCOMMIT[0m
+Migrating to AddSpouseEmailsToDocument (20131101110918)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (0.7ms)[0m  [1mALTER TABLE "documents" ADD COLUMN "first_spouse_email" character varying(255)[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "documents" ADD COLUMN "second_spouse_email" character varying(255)
+  [1m[36mSQL (1.8ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20131101110918"]]
+  [1m[35m (15.5ms)[0m  COMMIT
+Migrating to AddBillableHourToDocument (20131107110758)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "documents" ADD COLUMN "billable_hour" character varying(255)
+  [1m[36mSQL (2.8ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20131107110758"]]
+  [1m[35m (8.4ms)[0m  COMMIT
+Migrating to AddDetourMeetingsToDocuments (20131118042524)
+  [1m[36m (1.7ms)[0m  [1mBEGIN[0m
+  [1m[35m (64.6ms)[0m  ALTER TABLE "documents" ADD COLUMN "third_detour_meeting" boolean DEFAULT 'f'
+  [1m[36m (84.7ms)[0m  [1mALTER TABLE "documents" ADD COLUMN "fourth_detour_meeting" boolean DEFAULT 'f'[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "documents" ADD COLUMN "third_detour_meeting_description" text
+  [1m[36m (0.9ms)[0m  [1mALTER TABLE "documents" ADD COLUMN "fourth_detour_meeting_description" text[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20131118042524"]]
+  [1m[36m (84.9ms)[0m  [1mCOMMIT[0m
+Migrating to ChangeBillableHoursDefaultValue (20131121205547)
+  [1m[35m (0.9ms)[0m  BEGIN
+  [1m[36m (1.3ms)[0m  [1mALTER TABLE "documents" ALTER COLUMN "billable_hour" TYPE character varying(255)[0m
+  [1m[35m (0.7ms)[0m  ALTER TABLE "documents" ALTER COLUMN "billable_hour" SET DEFAULT '600.00'
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20131121205547"]]
+  [1m[35m (31.5ms)[0m  COMMIT
+Migrating to AddAdditionalFieldsToDocument (20140124165226)
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.2ms)[0m  ALTER TABLE "documents" ADD COLUMN "additional_sessions" character varying(255)
+  [1m[36mSQL (1.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140124165226"]]
+  [1m[35m (37.7ms)[0m  COMMIT
+Migrating to CreateLinks (20140321123253)
+  [1m[36m (2.7ms)[0m  [1mBEGIN[0m
+  [1m[35m (37.9ms)[0m  CREATE TABLE "links" ("id" serial primary key, "document_id" integer, "key" character varying(255), "created_at" timestamp, "updated_at" timestamp) 
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140321123253"]]
+  [1m[35m (10.3ms)[0m  COMMIT
+Migrating to AddPaymentIdToDocument (20140327181322)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (1.0ms)[0m  ALTER TABLE "documents" ADD COLUMN "stripe_payment_id" character varying(255)
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20140327181322"]]
+  [1m[35m (26.0ms)[0m  COMMIT
+Migrating to ChangeSignatureDataType (20140331214112)
+  [1m[36m (3.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSignature Load (0.6ms)[0m  SELECT "signatures".* FROM "signatures"
+  [1m[36mSQL (1.0ms)[0m  [1mUPDATE "signatures" SET "data" = 'THERE WAS OLD SIGNATURE' WHERE 1=0[0m
+  [1m[35m (52.6ms)[0m  ALTER TABLE "signatures" ALTER COLUMN "data" TYPE character varying(255)
+  [1m[36m (1.5ms)[0m  [1mALTER TABLE "signatures" ALTER COLUMN "data" SET DEFAULT ''[0m
+  [1m[35mSQL (1.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20140331214112"]]
+  [1m[36m (29.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (2.4ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+
+
+Started GET "/" for 127.0.0.1 at 2014-08-18 15:53:02 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.9ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by DocumentsController#index as HTML
+Redirected to http://localhost:3001/sign_in
+Filter chain halted as :authorize rendered or redirected
+Completed 302 Found in 38ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sign_in" for 127.0.0.1 at 2014-08-18 15:53:03 +0530
+Processing by Clearance::SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (1148.5ms)
+  Rendered application/_header.html.erb (10.0ms)
+  Rendered application/_flash_container.html.slim (4.8ms)
+Completed 200 OK in 10263ms (Views: 10261.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/sign_up" for 127.0.0.1 at 2014-08-18 15:54:17 +0530
+Processing by Clearance::UsersController#new as HTML
+  Rendered /home/rails/.rvm/gems/ruby-1.9.3-p545/bundler/gems/clearance-2c930b0d0a7b/app/views/users/_form.html.erb (112.9ms)
+  Rendered /home/rails/.rvm/gems/ruby-1.9.3-p545/bundler/gems/clearance-2c930b0d0a7b/app/views/users/new.html.erb within layouts/application (118.9ms)
+  Rendered application/_header.html.erb (0.7ms)
+  Rendered application/_flash_container.html.slim (0.2ms)
+Completed 200 OK in 444ms (Views: 147.2ms | ActiveRecord: 3.9ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2014-08-18 15:54:54 +0530
+Processing by Clearance::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"abc@gmail.com", "password"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mUser Exists (3.0ms)[0m  [1mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'abc@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (117.3ms)[0m  INSERT INTO "users" ("created_at", "email", "encrypted_password", "remember_token", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"  [["created_at", Mon, 18 Aug 2014 10:24:55 UTC +00:00], ["email", "abc@gmail.com"], ["encrypted_password", "$2a$10$vIrv5xlnc3nBWfQfCqoFiunMvRgVdbtxIeIVqFMyXrM6qYCbu5Ve."], ["remember_token", "cf788586cbc19d4cc9a41697dc405ef4d5d79250"], ["updated_at", Mon, 18 Aug 2014 10:24:55 UTC +00:00]]
+  [1m[36m (10.4ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3001/
+Completed 302 Found in 428ms (ActiveRecord: 131.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-08-18 15:54:55 +0530
+Processing by DocumentsController#index as HTML
+  [1m[35mUser Load (4.1ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1
+  [1m[36mDocument Load (20.2ms)[0m  [1mSELECT "documents".* FROM "documents" WHERE "documents"."architect_id" = $1 ORDER BY "documents"."created_at" DESC[0m  [["architect_id", 1]]
+  Rendered documents/index.html.slim within layouts/application (90.4ms)
+  Rendered application/_header.html.erb (1.2ms)
+  Rendered application/_flash_container.html.slim (1.1ms)
+Completed 200 OK in 526ms (Views: 95.2ms | ActiveRecord: 25.6ms)
+
+
+Started GET "/documents/new" for 127.0.0.1 at 2014-08-18 17:19:25 +0530
+Processing by DocumentsController#new as HTML
+  [1m[35mUser Load (379.3ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1
+  Rendered documents/form/_inputs.html.slim (1939.5ms)
+  Rendered documents/form/_labels.html.slim (36.7ms)
+  Rendered documents/form/_price_and_terms.html.slim (451.0ms)
+  Rendered documents/form/_detours.html.slim (10.5ms)
+  Rendered documents/_form.html.slim (2668.5ms)
+  Rendered documents/new.html.slim within layouts/application (2721.9ms)
+  Rendered application/_header.html.erb (1.0ms)
+  Rendered application/_flash_container.html.slim (0.2ms)
+Completed 200 OK in 3720ms (Views: 3205.9ms | ActiveRecord: 397.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2014-08-18 17:49:12 +0530
+Processing by DocumentsController#index as HTML
+  [1m[36mUser Load (44.6ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mDocument Load (85.4ms)[0m  SELECT "documents".* FROM "documents" WHERE "documents"."architect_id" = $1 ORDER BY "documents"."created_at" DESC  [["architect_id", 1]]
+  Rendered documents/index.html.slim within layouts/application (87.6ms)
+  Rendered application/_header.html.erb (0.7ms)
+  Rendered application/_flash_container.html.slim (0.1ms)
+Completed 200 OK in 384ms (Views: 200.9ms | ActiveRecord: 130.0ms)
+
+
+Started GET "/documents/new" for 127.0.0.1 at 2014-08-18 17:49:44 +0530
+Processing by DocumentsController#new as HTML
+  [1m[36mUser Load (6.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1[0m
+  Rendered documents/form/_inputs.html.slim (23.5ms)
+  Rendered documents/form/_labels.html.slim (0.1ms)
+  Rendered documents/form/_price_and_terms.html.slim (27.9ms)
+  Rendered documents/form/_detours.html.slim (3.8ms)
+  Rendered documents/_form.html.slim (104.8ms)
+  Rendered documents/new.html.slim within layouts/application (107.1ms)
+  Rendered application/_header.html.erb (0.7ms)
+  Rendered application/_flash_container.html.slim (0.2ms)
+Completed 200 OK in 163ms (Views: 154.7ms | ActiveRecord: 6.3ms)
+
+
+Started POST "/documents/email_blueprint" for 127.0.0.1 at 2014-08-18 17:50:27 +0530
+Processing by DocumentsController#email_blueprint as JS
+  [1m[35mUser Load (0.9ms)[0m  SELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1
+Completed 400 Bad Request in 22ms
+
+ActionController::ParameterMissing (param not found: document):
+  app/controllers/documents_controller.rb:85:in `document_params'
+  app/controllers/documents_controller.rb:21:in `email_blueprint'
+
+
+  Rendered /home/rails/.rvm/gems/ruby-1.9.3-p545/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.3ms)
+  Rendered /home/rails/.rvm/gems/ruby-1.9.3-p545/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.erb (2.6ms)
+  Rendered /home/rails/.rvm/gems/ruby-1.9.3-p545/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (3.4ms)
+  Rendered /home/rails/.rvm/gems/ruby-1.9.3-p545/gems/actionpack-4.0.0/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (70.5ms)
+
+
+Started POST "/documents" for 127.0.0.1 at 2014-08-18 17:50:32 +0530
+Processing by DocumentsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"[FILTERED]", "document"=>{"foundation_building"=>"1", "parenting_planning_i"=>"1", "parenting_planning_ii"=>"1", "parenting_planning_iii"=>"0", "first_spouse_detour_meeting"=>"0", "second_spouse_detour_meeting"=>"0", "fiscal_mapping"=>"1", "fiscal_mapping_ii"=>"1", "fiscal_mapping_iii"=>"0", "third_detour_meeting"=>"0", "fourth_detour_meeting"=>"0", "final_review"=>"1", "first_spouse_first_name"=>"", "first_spouse_last_name"=>"", "first_spouse_email"=>"", "second_spouse_first_name"=>"", "second_spouse_last_name"=>"", "second_spouse_email"=>"", "price"=>"", "additional_sessions"=>"", "terms"=>""}, "commit"=>"Save"}
+  [1m[36mUser Load (2.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (61.1ms)[0m  [1mINSERT INTO "signatures" ("active", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["active", true], ["created_at", Mon, 18 Aug 2014 12:20:32 UTC +00:00], ["updated_at", Mon, 18 Aug 2014 12:20:32 UTC +00:00]]
+  [1m[35mSQL (1.3ms)[0m  INSERT INTO "signatures" ("active", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"  [["active", true], ["created_at", Mon, 18 Aug 2014 12:20:33 UTC +00:00], ["updated_at", Mon, 18 Aug 2014 12:20:33 UTC +00:00]]
+  [1m[36mSQL (26.8ms)[0m  [1mINSERT INTO "documents" ("additional_sessions", "architect_id", "created_at", "first_spouse_email", "first_spouse_first_name", "first_spouse_last_name", "first_spouse_signature_id", "price", "second_spouse_email", "second_spouse_first_name", "second_spouse_last_name", "second_spouse_signature_id", "terms", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING "id"[0m  [["additional_sessions", ""], ["architect_id", 1], ["created_at", Mon, 18 Aug 2014 12:20:32 UTC +00:00], ["first_spouse_email", ""], ["first_spouse_first_name", ""], ["first_spouse_last_name", ""], ["first_spouse_signature_id", 1], ["price", ""], ["second_spouse_email", ""], ["second_spouse_first_name", ""], ["second_spouse_last_name", ""], ["second_spouse_signature_id", 2], ["terms", ""], ["updated_at", Mon, 18 Aug 2014 12:20:32 UTC +00:00]]
+  [1m[35m (27.7ms)[0m  COMMIT
+Redirected to http://localhost:3001/documents/1
+Completed 302 Found in 536ms (ActiveRecord: 237.6ms)
+
+
+Started GET "/documents/1" for 127.0.0.1 at 2014-08-18 17:50:33 +0530
+Processing by DocumentsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (6.8ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mDocument Load (3.3ms)[0m  SELECT "documents".* FROM "documents" WHERE "documents"."id" = $1 LIMIT 1  [["id", "1"]]
+  Rendered documents/_pdf_page_footer.html.slim (11.2ms)
+  Rendered documents/_text.html.slim (149.7ms)
+  [1m[36mSignature Load (4.6ms)[0m  [1mSELECT "signatures".* FROM "signatures" WHERE "signatures"."id" = $1 ORDER BY "signatures"."id" ASC LIMIT 1[0m  [["id", 2]]
+  Rendered documents/_signature.html.slim (22.2ms)
+  [1m[35mSignature Load (1.1ms)[0m  SELECT "signatures".* FROM "signatures" WHERE "signatures"."id" = $1 ORDER BY "signatures"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered documents/_signature.html.slim (6.1ms)
+  Rendered documents/_signatures.html.slim (49.7ms)
+  Rendered documents/show.html.slim within layouts/application (386.9ms)
+  Rendered application/_header.html.erb (0.8ms)
+  Rendered application/_flash_container.html.slim (0.1ms)
+Completed 200 OK in 474ms (Views: 450.3ms | ActiveRecord: 15.8ms)
+
+
+Started GET "/documents/1/edit" for 127.0.0.1 at 2014-08-18 17:50:48 +0530
+Processing by DocumentsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (1.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."remember_token" = 'cf788586cbc19d4cc9a41697dc405ef4d5d79250' ORDER BY "users"."id" ASC LIMIT 1[0m
+  [1m[35mDocument Load (3.1ms)[0m  SELECT "documents".* FROM "documents" WHERE "documents"."id" = $1 LIMIT 1  [["id", "1"]]
+  [1m[36mSignature Load (2.0ms)[0m  [1mSELECT "signatures".* FROM "signatures" WHERE "signatures"."id" = $1 ORDER BY "signatures"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mSignature Load (2.0ms)[0m  SELECT "signatures".* FROM "signatures" WHERE "signatures"."id" = $1 ORDER BY "signatures"."id" ASC LIMIT 1  [["id", 2]]
+  Rendered documents/form/_inputs.html.slim (19.8ms)
+  Rendered documents/form/_labels.html.slim (0.6ms)
+  Rendered documents/form/_price_and_terms.html.slim (17.7ms)
+  Rendered documents/form/_detours.html.slim (10.8ms)
+  Rendered documents/_form.html.slim (61.7ms)
+  Rendered documents/edit.html.slim within layouts/application (69.7ms)
+  Rendered application/_header.html.erb (1.0ms)
+  Rendered application/_flash_container.html.slim (0.2ms)
+Completed 200 OK in 116ms (Views: 100.3ms | ActiveRecord: 8.2ms)

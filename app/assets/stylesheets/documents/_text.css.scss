@@ -1,0 +1,139 @@
+%icon-title {
+    width: 22.50%;
+}
+
+%info {
+    font-size: 14%;
+    width: 20%;
+}
+
+.foundaion-building-title {
+    top: 17.80%;
+    left: 4.40%;
+    width: 10.15%;
+}
+
+.children {
+    top: 22.55%;
+    left: 18.61%;
+    width: 7.45%;
+    text-align: right;
+}
+
+.children-no {
+    top: 30.63%;
+    left: 23.94%;
+    width: 4.99%;
+}
+
+.children-yes {
+    top: 18.47%;
+    left: 22.84%;
+    width: 5.00%;
+    text-align: right;
+}
+
+.parenting-planning-title {
+    @extend %icon-title;
+    bottom: 84.50%;
+    left: 24.40%;
+}
+
+.detour-1-title {
+    bottom: 84.50%;
+    left: 55.41%;
+    width: 10.83%;
+}
+
+.detour-2-title {
+    top: 89.61%;
+    left: 46.28%;
+    width: 10.24%;
+}
+
+.support-title {
+    @extend %info;
+    @extend %icon-title;
+    width: 40%;
+    left: 35.4%;
+    top: 43.5%;
+
+    > p {
+        opacity: 0.5;
+    }
+}
+
+.due-diligence-title {
+    @extend %icon-title;
+    top: 33.77%;
+    left: 71.06%;
+}
+
+.financial-mapping-title {
+    @extend %icon-title;
+    bottom: 28.20%;
+    left: 64.30%;
+}
+
+.document-prepping-title {
+    @extend %icon-title;
+    bottom: 28.20%;
+    left: 19.37%;
+}
+
+.final-review-title {
+    @extend %icon-title;
+    bottom: 28.20%;
+    left: -1.78%;
+}
+
+
+
+
+.foundation-building-info {
+    @extend %info;
+    top: 31.78%;
+    left: -0.25%;
+}
+
+.parenting-planning-info {
+    @extend %info;
+    top: 21.60%;
+    left: 25.80%;
+}
+
+.detour-1-info {
+    @extend %info;
+    top: 21.60%;
+    left: 50.59%;
+}
+
+.fiscal-info {
+    @extend %info;
+    bottom: 74.00%;
+    left: 71.40%;
+}
+
+.financial-mapping-info {
+    @extend %info;
+    top: 81.00%;
+    left: 65.91%;
+}
+
+.detour-2-info {
+    @extend %info;
+    top: 78.74%;
+    left: 40.86%;
+}
+
+.document-prepping-info {
+    @extend %info;
+    top: 78.83%;
+    left: 20.05%;
+}
+
+.final-review-info {
+    @extend %info;
+    top: 80.00%;
+    left: 1.69%;
+}

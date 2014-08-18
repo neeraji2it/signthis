@@ -1,0 +1,49 @@
+@mixin pos($left, $top) {
+    left: $left;
+    top: $top;
+}
+
+.document_foundation_building {
+    @include pos(8.4%, 26%);
+}
+
+.document_parenting_planning_i {
+    @include pos(31.9%, 16.5%);
+}
+.document_parenting_planning_ii {
+    @include pos(34.6%, 16.5%);
+}
+.document_parenting_planning_iii {
+    @include pos(37.3%, 16.5%);
+}
+
+.document_first_spouse_detour_meeting {
+    @include pos(58.3%, 16.5%);
+}
+.document_second_spouse_detour_meeting {
+    @include pos(61%, 16.5%);
+}
+
+.document_fiscal_mapping_iii {
+    @include pos(71.9%, 74.4%);
+}
+.document_fiscal_mapping_ii {
+    @include pos(74.6%, 74.4%);
+}
+.document_fiscal_mapping {
+    @include pos(77.3%, 74.4%);
+}
+
+.document_third_detour_meeting {
+    @include pos(51.5%, 83.7%);
+}
+.document_fourth_detour_meeting {
+    @include pos(48.8%, 83.7%);
+}
+/*.document_fiscal_mapping_iii {*/
+    /*@include pos(47.6%, 83.7%);*/
+/*}*/
+
+.document_final_review {
+    @include pos(8.4%, 74.4%);
+}

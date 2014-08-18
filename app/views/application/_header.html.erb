@@ -1,0 +1,26 @@
+<header class="header">
+  <span class="border-hiding-spacer">
+  </span>
+  <ul class="nav">
+
+    <li class="tool logo">
+    <%= link_to(image_tag('wevorce-logo-rev.png'), root_path, class: "wevorce-logo-link") %>
+    </li>
+
+    <li class="tool title-bar">
+      <span class="case-title"><%= @title || @case ? @case.name : "" %></span>
+    </li>
+
+    <li class="tool session-controls">
+    <% if signed_in? %>
+      <div class="signed-in">
+        <%=  link_to "Sign out", sign_out_path, method: :delete %>
+      </div>
+    <% else %>
+      <% if params[:action] != 'public_access' %>
+        <%= link_to("Sign in", sign_in_path, class: 'sign_in') %>
+      <% end %>
+    <% end %>
+    </li>
+  </ul>
+</header>

@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Wevorce New Family
+    meta charset='utf-8'
+    meta name='ROBOTS' content='NOODP'
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    script type="text/javascript" src="//use.typekit.net/rza8rxz.js"
+    script type='text/javascript' src='https://js.stripe.com/v2/'
+    = tag :meta, name: 'stripe-key', content: STRIPE_PUBLIC_KEY
+    javascript:
+      try{Typekit.load();}catch(e){}
+    = csrf_meta_tags
+  body class=body_class
+    .header
+      = render 'header'
+    = yield :top_controls
+    .popover-content
+      = render 'flash_container'
+        
+    .wrapper
+      = yield
+    = yield(:controls)
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+

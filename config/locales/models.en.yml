@@ -1,0 +1,15 @@
+en: 
+  activerecord:
+    attributes:
+      document:
+        foundation_building: 'Foundation Building'
+        parenting_planning_i: 'Parenting Planning I'
+        fiscal_mapping: 'Financial Mapping I'
+        document_prepping: 'Document Prepping'
+        final_review:  'Final Review'
+        parenting_planning_ii: 'Parenting Planning II'
+        fiscal_mapping_ii: 'Financial Mapping II'
+        parenting_planning_iii: 'Parenting Planning III'
+        fiscal_mapping_iii: 'Financial Mapping III'
+        first_spouse_detour_meeting: 'Detour Meeting'
+        second_spouse_detour_meeting: 'Detour Meeting'

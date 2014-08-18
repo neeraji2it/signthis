@@ -1,0 +1,71 @@
+/*
+ *= require jquery-ui
+ *= requure jquery.signature
+ */
+@import 'bourbon';
+@import 'variables';
+@import 'compass';
+@import "rails-sass-images";
+
+* {
+  outline:                      0;
+}
+
+body {
+  background:                   $background-color;
+  color:                        $black;
+  font-family:                  $font-sans-serif;
+  margin:                       0;
+  padding-top:                  55px;
+  min-width:                    940px;
+}
+
+.wrapper {
+  @include clearfix;
+
+  max-width:                    1048px;
+  margin:                       auto;
+  margin-top:                   45px;
+  clear:                        both;
+  padding-left: 2%;
+  padding-right: 2%;
+
+  @if $visual-grid {
+    background:                   image_url('grid.png');
+  }
+}
+
+hr {
+  border-bottom:                1px solid #eeeffa;
+  margin-bottom:                27px;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+@import 'application/container';
+@import 'application/buttons';
+@import 'application/ui-overrides';
+@import 'application/dialog';
+@import 'application/flashes';
+@import 'application/forms_base';
+@import 'application/forms';
+@import 'application/header';
+@import 'application/icons';
+@import 'application/utility_classes';
+@import 'application/layouts';
+@import 'application/typography';
+
+@import 'sessions/new';
+
+@import 'documents/form';
+@import 'documents/index';
+@import 'documents/show';
+
+@import 'purchase';
+
+@media print {
+  @import 'application/print';
+}

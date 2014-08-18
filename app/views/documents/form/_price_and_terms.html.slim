@@ -1,0 +1,17 @@
+fieldset.first_spouse_fields
+  = f.input_field :first_spouse_first_name, placeholder: 'First name'
+  = f.input_field :first_spouse_last_name, placeholder: 'Last name'
+  = f.input_field :first_spouse_email, placeholder: 'Email'
+fieldset.second_spouse_fields
+  = f.input_field :second_spouse_first_name, placeholder: 'First name'
+  = f.input_field :second_spouse_last_name, placeholder: 'Last name'
+  = f.input_field :second_spouse_email, placeholder: 'Email'
+fieldset.price_and_terms
+  = f.label :price
+  = f.input :price, placeholder: 'Price', wrapper: :placeholders, as: :currency
+  span.additional_session
+    = f.label :additional_sessions
+    = f.input :additional_sessions, placeholder: 'Price', wrapper: :placeholders, as: :currency
+  br
+  = f.label :terms
+  = f.input :terms, as: :text, placeholder: 'Enter price and any special terms', wrapper: :placeholders

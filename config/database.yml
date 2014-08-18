@@ -1,0 +1,20 @@
+
+development:
+  adapter:  postgresql
+  encoding: unicode
+  database: signthis_development
+  min_messages: warning
+  host: 127.0.0.1
+  pool: 5
+  username: username
+  password: password
+
+test:
+  adapter:  postgresql
+  encoding: unicode
+  database: signthis_test
+  min_messages: warning
+  host: 127.0.0.1
+  pool: 5
+  username: username
+  password: password

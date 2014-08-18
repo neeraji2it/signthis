@@ -1,0 +1,47 @@
+@import "icons/icon-case/*.png";
+$icon-case-sprite-dimensions: true;
+@include all-icon-case-sprites;
+
+@import "icons/icon-case-template/*.png";
+$icon-case-template-sprite-dimensions: true;
+@include all-icon-case-template-sprites;
+
+@import "icons/icon-case-disabled/*.png";
+$icon-case-disabled-sprite-dimensions: true;
+@include all-icon-case-disabled-sprites;
+
+@import "icons/icon-document/*.png";
+$icon-document-sprite-dimensions: true;
+@include all-icon-document-sprites;
+
+@import 'icons/icon-header/*.png';
+$icon-header-sprite-dimensions: true;
+@include all-icon-header-sprites;
+
+@import 'icons/icon-questionnaire/*.png';
+$icon-questionnaire-sprite-dimensions: true;
+@include all-icon-questionnaire-sprites;
+
+@import 'icons/icon-arrows/*.png';
+$icon-arrows-sprite-dimensions: true;
+@include all-icon-arrows-sprites;
+
+@import "icons/icon-checkbox/*.png";
+$icon-checkbox-sprite-dimensions: true;
+@include all-icon-checkbox-sprites;
+
+@import "icons/icon-edit/*.png";
+$icon-edit-sprite-dimensions: true;
+@include all-icon-edit-sprites;
+
+@import "icons/icon-home/*.png";
+$icon-home-sprite-dimensions: true;
+@include all-icon-home-sprites;
+
+@import "icons/icon-presentation/*.png";
+$icon-presentation-sprite-dimensions: true;
+@include all-icon-presentation-sprites;
+
+@import "icons/icon-block/*.png";
+$icon-block-sprite-dimensions: true;
+@include all-icon-block-sprites;

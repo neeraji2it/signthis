@@ -1,0 +1,7 @@
+= content_for :top_controls do
+  .controls
+    = link_to 'New Agreement', new_document_path, class: 'button', data: {"no-turbolink" => true}
+ul.documents
+  - @documents.each do |document|
+    li = link_to document.name, document
+

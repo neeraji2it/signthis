@@ -1,0 +1,13 @@
+= simple_form_for signature, remote: true do |f|
+  = content_tag :div, class: 'message' do
+    div &nbsp;
+    strong = spouse.presence || tag(:br)
+    p I agree with the terms of the mediation agreement above.
+    p Signature:
+  = f.input :data, label: false, input_html: {class: 'signature_input', placeholder: 'Type Your Electronic Signature'}, disabled: !signature.active?
+  = content_tag :div, class: 'time', data: {utc: signature.updated_at_in_miliseconds}
+  	br
+  fieldset.actions.document-controls
+    - if signature.active?
+      = link_to 'Clear', '#', class: "signature-clear"
+      = f.submit 'Sign', class: 'button'

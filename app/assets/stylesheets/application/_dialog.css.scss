@@ -1,0 +1,56 @@
+.ui-dialog .ui-dialog-content.dialog-inner {
+  padding:                      0px;
+  .dialog-content {
+    padding:                      16px;
+  }
+  form {
+    padding:                      0px;
+  }
+
+  label {
+    width:                        100px;
+  }
+
+  textarea {
+    resize:                       none;
+    height:                       90px;
+  }
+
+  /* prefer flash style errors in dialog forms */
+  span.error {
+    display:                      none;
+  }
+}
+
+.simple_form.edit_estimate label {
+  margin-right:                 16px;
+  margin-top:                   0px;
+}
+
+.dialog-content {
+  font-size:                    16px;
+}
+
+.dialog-actions {
+  @include clearfix;
+  clear: both;
+
+  .button, .button-cancel, .button-danger, .button-secondary{
+    float:                        right;
+  }
+
+  padding:                      16px;
+  border-top:                   1px solid $border-color;
+
+  .button {
+    margin-left:                  0px !IMPORTANT;
+  }
+
+  a.button-secondary, a.button-cancel{
+    margin-right:                 11px;
+  }
+}
+
+input#meeting_zero_starts_at, input#meeting_starts_at {
+  width: 80%;
+}

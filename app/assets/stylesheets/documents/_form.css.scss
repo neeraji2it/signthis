@@ -1,0 +1,210 @@
+.blueprint-page {
+  .wrapper {
+    width: 100%;
+    padding: 0;
+    max-width: 100%;
+    margin-top: 0;
+  }
+}
+$blueprint-text: #2a4681;
+$blueprint-bg: #ced0d9;
+
+.blueprint-maker {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding: 0 0 43.16%;
+  font-size: 62.5%;
+  background-color: $blueprint-bg;
+  background-image: image_url('blueprint-bg.png');
+  background-position: 47% 38.2%;
+  background-repeat: no-repeat;
+  @include background-size(99% 80%);
+  @include box-sizing(border-box);
+}
+
+/*@import "compass";  override bourbon transforms*/
+
+.blueprint-cb {
+  display: block;
+  position: absolute;
+  width: 2%;
+
+  > label {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background: $blueprint-text;
+    margin-top: 0;
+    text-align: left;
+    float: none;
+    cursor: pointer;
+
+    &:after {
+      content: '';
+      position: absolute;
+      @include scale(0.5);
+      width: 100%;
+      padding-bottom: 100%;
+      background: #fff;
+
+      .no-csstransforms {
+        width: 50%;
+        left: 25%;
+        top: 25%;
+      }
+    }
+  }
+
+  > input {
+    position: absolute;
+    visibility: hidden;
+
+    &:checked + label:after {
+      background-color: $wevorce-green;
+    }
+  }
+}
+
+
+$base-font-size: 100px;
+$step: 16px; // 5%;
+$min-width: 768px;
+$max-width: 1600px;
+$width: $max-width;
+$form-breakpoint: 1365px;
+
+.blueprint-layer.text-layer {
+  font-size: $base-font-size;
+  @media print {
+    font-size: $base-font-size * .7;
+  }
+}
+
+@while $width > $min-width {
+  @media screen and (max-width: $width) {
+    .blueprint-layer.text-layer {
+      font-size: $width / $max-width * $base-font-size;
+    }
+  }
+  $width: $width - $step;
+}
+
+.blueprint-text {
+  display: inline-block;
+  position: absolute !important;
+  font-size: 21%;
+  text-align: center;
+  color: $blueprint-text;
+
+  > ul, > p {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+  }
+
+  > ul {
+    list-style: none;
+
+    > li:before {
+      display: inline-block;
+      content: "\2022 ";
+      margin-right: 0.2em;
+    }
+  }
+}
+
+.blueprint-icon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 15%;
+  padding-bottom: 15%;
+
+  &.standalone-icon {
+    display: block;
+    margin: 2% auto;
+  }
+}
+
+.document-form {
+  .controls {
+    padding-right: 16px;
+    padding-left: 0;
+    margin-top: -46px;
+    padding-top: $gw-gutter;
+    float: right;
+    @media screen and (max-width: $form-breakpoint) {
+      padding-top: 32px;
+      margin-top: -16px;
+    }
+  }
+  fieldset {
+    float: left;
+    padding-left: 5%;
+    &:first-child {
+      padding-left: 16px;
+    }
+    &.detours {
+      width: 100%;
+      .text {
+        display: inline;
+        width: grid-width(4);
+        &:not(:first-child) {
+          padding-left: 5%;
+        }
+      }
+      textarea {
+        height: 60px;
+      }
+    }
+
+    label {
+      float: none;
+      &[for='document_price'], &[for='document_additional_sessions'] {
+        vertical-align: -8px;
+      }
+      &[for='document_terms'] {
+        vertical-align: 23px;
+      }
+    }
+
+    &.price_and_terms {
+      /*width: calc(352px + 6%);*/
+      .input {
+        display: inline-block;
+      }
+      .document_terms {
+        @media print {
+          width: calc(100% - 92px);
+        }
+        width: calc(100% - 81px);
+        padding: 0 16px 0 16px;
+        textarea {
+          height: 70px;
+          padding-right: 0;
+          width: 100%
+        }
+      }
+    }
+  }
+  input.string, input.email, input.currency {
+    width: grid-width(4);
+    margin-top: 16px;
+  }
+  .add-on {
+    vertical-align: -8px;
+    margin-left: -4px;
+  }
+  @media screen and (max-width: $form-breakpoint) {
+    padding-bottom: 315px;
+  }
+  margin-bottom: 50px;
+  padding-bottom: 270px;
+}
+@import "checkboxes";
+@import "text";
+@import "icons";

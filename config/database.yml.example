@@ -1,0 +1,14 @@
+development: &default
+  adapter: postgresql
+  host: localhost
+  database: wevorce_ecosign_development
+  encoding: utf8
+  min_messages: warning
+  pool: 5
+  timeout: 5000
+  username: ramones
+  password: ubuntu
+
+test:
+  <<: *default
+  database: wevorce_ecosign_test

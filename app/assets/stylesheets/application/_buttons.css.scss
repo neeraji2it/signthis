@@ -1,0 +1,117 @@
+@mixin button-style($button-color, $button-highlight: false) {
+  background-color:             $button-color;
+  border-color:                 $button-color;
+  border-style:                 solid;
+  border-width:                 1px;
+  cursor:                       pointer;
+  display:                      inline-block;
+  font-family:                  $font-sans-serif;
+  font-size:                    16px;
+  font-weight:                  normal;
+  line-height:                  24px;
+  margin:                       0;
+  padding:                      2px 16px;
+  text-align:                   center;
+  text-decoration:              none;
+  vertical-align:               middle;
+
+  &.disabled {
+    background-color:             lighten($button-color, 20);
+    cursor:                       default;
+  }
+}
+
+@mixin button-hover($button-color, $button-highlight: false) {
+  &:hover {
+    @if $button-highlight {
+      background-color:             $button-highlight;
+    } @else {
+      background-color:             darken($button-color, 8);
+    }
+    text-decoration:              none;
+  }
+
+  &:active {
+    @if $button-highlight {
+      background-color:             $button-highlight;
+    } @else {
+      background-color:             darken($button-color, 10);
+    }
+
+    padding:                      1px 15px;
+    border:                       2px solid darken($button-color, 15);
+  }
+}
+
+
+@mixin wevorce-button($button-color, $button-highlight: false) {
+  @include button-style($button-color, $button-highlight);
+  @include button-hover($button-color, $button-highlight);
+}
+
+button, .button, input.button {
+  @include wevorce-button($link-color);
+  color:                        white;
+}
+
+.button.red {
+  @include wevorce-button(red);
+}
+
+.button-secondary, .button-cancel {
+  @include wevorce-button(#fff, #76a8cb);
+  border:                       1px solid #ccc;
+  color:                        $black;
+
+  &:hover {
+    border-color:                 #76a8cb;
+    color:                        white;
+    cursor: pointer;
+  }
+}
+
+.button-file {
+  overflow:                     hidden;
+  position:                     relative;
+
+  input {
+    @include opacity(0);
+    cursor:                       pointer;
+    font-size:                    80px;
+    position:                     absolute;
+    right:                        0;
+    top:                          0;
+  }
+
+  .button-text {
+  }
+}
+
+.button-danger {
+  @include wevorce-button(red);
+  color:                        white !important;
+  &:hover {
+    border-color:                 #d60000;
+  }
+}
+
+.progress-completed, .button-disabled {
+  @include button-style(#fff);
+  border:                       1px solid #ccc;
+  color:                        #ccc;
+  cursor:                       auto;
+}
+
+.add-card-button, .activity-button {
+  @include wevorce-button(white, #EF6D54);
+  border: 1px solid #ccc;
+  float: right;
+  margin-right: 16px;
+  color: $black;
+
+  &:hover {
+    background-color: #EF6D54;
+    border-color: #EF6D54;
+    color: white;
+  }
+}

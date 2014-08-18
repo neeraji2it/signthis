@@ -1,0 +1,15 @@
+= content_for(:extra_body_classes, 'blueprint-page')
+= simple_form_for document, html: {class: 'blueprint-wrap document-form'}, defaults: {wrapper: :blueprint_checkboxes} do |f|
+  div.blueprint-maker
+    = render 'documents/form/inputs', f: f
+    = render 'documents/form/labels', f: f
+  = render 'documents/form/price_and_terms', f: f
+  = render 'documents/form/detours', f: f
+  .controls
+    .link = form_clear_button
+    .link = print_button('Print')
+    - email_link_method = document.persisted? ? :patch : :post
+    .link = link_to 'Email', email_blueprint_documents_path, remote: true, method: email_link_method, class: 'button', id: 'document_email_button'
+    .link = f.submit 'Save', class: 'button'
+
+

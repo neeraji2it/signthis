@@ -1,0 +1,13 @@
+.blueprint-layer.checkboxes-layer
+  = f.input :foundation_building, as: :blueprint_boolean
+  = f.input :parenting_planning_i, as: :blueprint_boolean
+  = f.input :parenting_planning_ii, as: :blueprint_boolean
+  = f.input :parenting_planning_iii, as: :blueprint_boolean
+  = f.input :first_spouse_detour_meeting, as: :blueprint_boolean, input_html: {data: {sync_textarea: 'first_spouse_detour_meeting_description'}}
+  = f.input :second_spouse_detour_meeting, as: :blueprint_boolean, input_html: {data: {sync_textarea: 'second_spouse_detour_meeting_description'}}
+  = f.input :fiscal_mapping, as: :blueprint_boolean
+  = f.input :fiscal_mapping_ii, as: :blueprint_boolean
+  = f.input :fiscal_mapping_iii, as: :blueprint_boolean
+  = f.input :third_detour_meeting, as: :blueprint_boolean, input_html: {data: {sync_textarea: 'third_detour_meeting_description'}}
+  = f.input :fourth_detour_meeting, as: :blueprint_boolean, input_html: {data: {sync_textarea: 'fourth_detour_meeting_description'}}
+  = f.input :final_review, as: :blueprint_boolean

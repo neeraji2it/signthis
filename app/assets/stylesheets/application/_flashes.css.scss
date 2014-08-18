@@ -1,0 +1,38 @@
+.flash {
+  padding:                      10px;
+
+  .dismiss {
+    float:                        right;
+    cursor:                       pointer;
+    margin-right:                 16px;
+  }
+}
+
+.flash-container {
+  position:                     relative;
+}
+
+#flash-notice, #flash-info{
+  background:                   $info-background;
+  color:                        $info-text;
+
+  a {
+    color:                        $info-text;
+    text-decoration:              underline;
+  }
+}
+
+#flash-success{
+  background:                   $success-background;
+  color:                        $success-text;
+}
+
+#flash-error{
+  background:                   $error-background;
+  color:                        $error-text;
+}
+
+#flash-warning{
+  background:                   $warning-background;
+  color:                        $warning-text;
+}

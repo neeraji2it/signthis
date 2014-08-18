@@ -1,0 +1,54 @@
+i.arrow-down{
+  height:                       5px;
+  width:                        7px;
+  background-image:             image-url('arrow-down.png');
+  background-position:          7px 5px;
+  display:                      inline-block;
+  line-height:                  5px;
+  vertical-align:               text-top;
+  margin-top:                   8px;
+
+  &.pull-down{
+    margin-top:                   1px;
+  }
+}
+
+i.mail {
+  height:                       16px;
+  width:                        20px;
+  background-image:             image-url('envelope.png');
+  background-position:          20px 16px;
+  display:                      inline-block;
+  line-height:                  16px;
+  &:hover{
+    background-image:             image-url('envelope_hover.png');
+  }
+}
+
+i.settings{
+  height:                       20px;
+  width:                        20px;
+  background-image:             image-url("settings.png");
+  background-position:          20px 20px;
+  display:                      inline-block;
+  line-height:                  20px;
+  &:hover {
+    background-image:             image-url("settings_hover.png");
+  }
+}
+
+a.delete-row {
+  text-decoration: none;
+  font-size: 24px;
+  color: #888;
+  position: relative;
+  top: 1px;
+  font-weight: bold;
+
+  &:hover {
+    color: #464646;
+    text-decoration: none;
+  }
+}
+
+

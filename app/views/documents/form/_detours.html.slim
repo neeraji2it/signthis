@@ -1,0 +1,5 @@
+fieldset.detours
+  = f.input_field :first_spouse_detour_meeting_description, placeholder: "Detour 1", disabled: !f.object.first_spouse_detour_meeting
+  = f.input_field :second_spouse_detour_meeting_description, placeholder: "Detour 2", disabled: !f.object.second_spouse_detour_meeting
+  = f.input_field :third_detour_meeting_description, placeholder: "Detour 3", disabled: !f.object.third_detour_meeting
+  = f.input_field :fourth_detour_meeting_description, placeholder: "Detour 4", disabled: !f.object.fourth_detour_meeting

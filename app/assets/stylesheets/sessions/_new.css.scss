@@ -1,0 +1,26 @@
+header.header {
+  background-color:             $header-background;
+  border-width:                 0;
+
+  .session-controls a.sign_in {
+    padding-left:                 33px;
+    background:                   image-url('arrow-back.png') no-repeat left center;
+
+    &:hover {
+      background-image:             image-url('arrow-back-hover.png');
+    }
+  }
+}
+.clearance-sessions-new  {
+  input[type="email"], input[type="password"] {
+    width:                        grid-width(8) - (2 * 7);
+  }
+
+  fieldset.actions {
+    margin-top:                   $gw-gutter;
+  }
+
+  .sign-in.button {
+    margin-left:                  16px;
+  }
+}

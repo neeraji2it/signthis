@@ -1,0 +1,38 @@
+// Place all the styles related to the purchase controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+form#new_purchase {
+  padding: 16px;
+  input, select {
+    margin-left: 16px;
+  }
+  .purchase_cardholder_first_name, .purchase_cardholder_last_name, .purchase_card_number {
+    input {
+      width: 300px;
+    }
+  }
+  .purchase_expiration_date_month, .purchase_expiration_date_year {
+    label {
+      width: 20px;
+    }
+  }
+  .purchase_expiration_date_month, .purchase_expiration_date_year, .purchase_card_code {
+    select, input {
+      width: 65px;
+    }
+    #purchase_expiration_date_year {
+      margin-left: 0;
+    }
+    display: inline-block;
+  }
+  .error_messages {
+    color: red;
+  }
+  .purchase_card_code {
+    .hint {
+      width: 50%;
+      padding-left: 170px;
+    }
+  }
+}

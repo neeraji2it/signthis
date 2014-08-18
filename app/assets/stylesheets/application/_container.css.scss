@@ -1,0 +1,142 @@
+@mixin container-header {
+  background: $header-background;
+  font-size: 20px;
+  color: white;
+  margin: 16px;
+  font-family: $font-serif;
+  letter-spacing: 1px;
+  font-weight: 500;
+  line-height: 33px;
+}
+
+@mixin container {
+  background:                   white;
+  margin:                       auto;
+  width:                        grid-width(15) - $gw-gutter + 2;
+  padding:                      0px;
+
+  h1 {
+    margin:                       0;
+  }
+
+  header, .header, .container-header {
+    @include clearfix;
+    background: $header-background;
+
+    h1 {
+      @include container-header;
+    }
+  }
+
+  section, .section {
+    @include clearfix;
+    padding:                      16px;
+    border-bottom:                1px solid $border-color;
+
+    h1 {
+      font-weight:                  bold;
+      a { text-decoration: none; color: #464646; }
+    }
+
+    .icon {
+      float:                        left;
+      margin:                       0px 16px;
+    }
+
+    .summary {
+      float:                        left;
+      margin:                       0px;
+      padding:                      0px;
+      margin-left:                  16px;
+      list-style:                   none;
+    }
+
+    .actions {
+      float:                        right;
+      text-align:                   right;
+
+      .action {
+        margin-bottom:                16px;
+      }
+    }
+
+    &.disabled {
+      opacity:                      0.5;
+    }
+  }
+}
+
+@mixin plain-header {
+  header, .header {
+    h1 {
+      float:                        left;
+    }
+
+    a {
+      float:                        right;
+      color:                        white;
+      text-decoration:              none;
+      border:                       1px solid white;
+      padding:                      6px 22px;
+      margin:                       16px;
+
+      &:hover {
+        background:                   #fff;
+        color:                        #595959;
+      }
+    }
+  }
+}
+
+@mixin header-secondary {
+  h2 {
+    color:                        white;
+    font-family:                  $font-serif;
+    font-size:                    20px;
+    font-weight:                  500;
+    line-height:                  30px;
+    margin:                       $gw-gutter;
+    letter-spacing:               1px;
+  }
+
+  .button-secondary {
+    background-color:             transparent;
+    border-color:                 white;
+    color:                        white;
+    margin:                       $gw-gutter;
+    margin-left:                  0;
+
+    &:hover, &:active {
+      border-color:                 white;
+      background-color:             white;
+      color:                        $black;
+    }
+  }
+}
+
+@mixin header-tertiary {
+  background-color:             $header-tertiary-background;
+  color:                        $header-tertiary-text;
+  font-family:                  $font-sans-serif;
+  font-size:                    16px;
+  font-weight:                  700px;
+  min-height:                   40px;
+  line-height:                  40px;
+  padding:                      0 16px;
+}
+
+@mixin text-section {
+  section {
+    h4 {
+      margin-bottom: 0;
+    }
+    h4 + p {
+      margin-top: 0;
+    }
+  }
+
+  ol {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}

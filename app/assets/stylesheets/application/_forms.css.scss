@@ -1,0 +1,194 @@
+fieldset{
+  border:                       none;
+  padding:                      16px $gw-gutter 0;
+  margin:                       0px;
+}
+
+legend {
+  padding:                      10px;
+  padding-left:                 0px;
+  font-size:                    24px;
+}
+
+form{
+  background:                   white;
+}
+
+.simple_form {
+  h2 {
+    background:                   #595959;
+    color:                        white;
+    font-family:                  $font-serif;
+    font-weight:                  500;
+    font-size:                    20px;
+    line-height:                  24px;
+    margin:                       0;
+    padding:                      19px 16px;
+    letter-spacing:               1px;
+  }
+
+  h3 {
+    @include header-tertiary;
+    margin:                       0;
+  }
+
+  div.input {
+    clear:                        both;
+    padding:                      0px $gw-gutter $gw-gutter $gw-gutter;
+    /* Required for Webkit, but not for Gecko */
+
+    &.single-line {
+      @include pie-clearfix();
+
+      input, select {
+        float:                        left;
+        margin-right:                 0.5 * $gw-gutter;
+      }
+
+      .error {
+        float:                        left;
+        clear:                        none;
+        line-height:                  27px;
+      }
+    }
+
+    &.file.filepath-preview {
+      .button-secondary {
+        float:                        left;
+      }
+
+      .filepath {
+        display:                      block;
+        line-height:                  30px;
+        vertical-align:               bottom;
+        font-style:                   italic;
+        color:                        #666;
+        margin-left:                  150px;
+        text-overflow:                ellipsis;
+        overflow:                     hidden;
+        white-space:                  nowrap;
+      }
+    }
+  }
+
+  label {
+    margin-top:                   5px;
+    float:                        left;
+    width:                        grid-width(5);
+    text-align:                   right;
+  }
+
+  .error {
+    font-size:                    12px;
+    line-height:                  20px;
+  }
+
+  &.form-reset {
+    div.input {
+      clear: none;
+      padding: 0;
+    }
+
+    label {
+      margin-top: 0;
+      float: none;
+      width: auto;
+      text-align: left;
+    }
+
+    input[type='text'] {
+      height: auto;
+      padding: 0;
+      font-size: 16px;
+      line-height: 16px;
+    }
+
+  }
+}
+
+fieldset.actions {
+  border-top:                   1px solid #eeeff1;
+  padding:                      16px;
+
+  p {
+    line-height:                  20px;
+    margin:                       5px 0;
+  }
+}
+
+div.boolean, .simple_form input[type='submit'] {}
+
+div.boolean label {
+  float:                        none;
+  margin:                       0;
+}
+
+label.collection_radio_buttons {
+  float:                        none;
+  margin:                       0;
+  margin-right:                 10px;
+  vertical-align:               -2px;
+  margin-left:                  2px;
+}
+
+fieldset {
+  padding:                      0;
+  padding-top:                  16px;
+}
+
+div.other-links{
+  margin-top:                   8px;
+  margin-left:                  grid-width(5) + $gw-gutter;
+}
+
+input[type="file"] {
+  margin:                       0
+}
+
+select:not([multiple]), textarea, input[type="tel"], input[type="text"],
+input[type="password"], input[type="email"], input[type="number"] {
+  height:                       24px;
+  padding:                      2px 6px;
+  font-size:                    14px;
+  line-height:                  20px;
+
+  &.radio {
+    margin-right:                 5px;
+    vertical-align:               -3px;
+  }
+  &.check_boxes {
+    margin-left:                  3px;
+    vertical-align:               -3px;
+  }
+}
+
+select:not([multiple]) {
+  width:                        220px;
+  height:                       27px;
+}
+
+select[multiple] {
+  width: 220px;
+  height: 100px;
+}
+label.collection_check_boxes {
+  vertical-align:               -2px;
+  margin-left:                  2px;
+}
+
+.button.working {
+  position:                     relative;
+
+  &:after {
+    $spinner-size:                     16px;
+    content:                      '';
+    background:                   image-url('form_submit_working.gif') no-repeat center;
+    display:                      block;
+    width:                        $spinner-size;
+    height:                       $spinner-size;
+    position:                     absolute;
+    left:                         0 - $spinner-size - (0.5 * $gw-gutter);
+    top:                          50%;
+    margin-top:                   0 - (0.5 * $spinner-size);
+  }
+}

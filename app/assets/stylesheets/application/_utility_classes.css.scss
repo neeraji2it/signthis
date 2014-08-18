@@ -1,0 +1,49 @@
+.pull-left {
+  float:                        left;
+}
+
+.pull-right{
+  float:                        right;
+}
+
+.clearfix {
+  @include clearfix
+}
+
+.block-link-button:hover{
+  a.block-link{
+    color:                        $link-color;
+  }
+}
+
+.border-right {
+  border-right:                 1px solid #ddd;
+}
+
+.border-left {
+  border-left:                  1px solid #ddd;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.page-break {
+  display: none;
+}
+
+ul.empty {
+  list-style-type: none;
+}
+
+.print-only, .pdf-only {
+  display: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@function pxtoem($px){
+    @return ($px/14px)+0em;
+}

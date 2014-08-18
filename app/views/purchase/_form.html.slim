@@ -1,0 +1,18 @@
+= simple_form_for purchase, url: purchase_documents_path(key: document.public_key) do |f|
+  p To get started, please submit payment for your “reservation fee.” This fee allows us to hold your price, tentatively schedule your first meeting and begin the process with an Intro Questionnaire.
+  span
+    strong Reservation Fee: 
+    span $500
+  .error_messages
+    - if purchase.errors.any?
+      span There was a problem with your credit card.
+  fieldset
+    = f.input :cardholder_first_name
+    = f.input :cardholder_last_name
+    = f.input :card_number
+    = f.input :card_code
+    = f.input :expiration_date_month, collection: 1..12, label: 'Exp.'
+    = content_tag :span, "/"
+    = f.input :expiration_date_year, collection: 2014..2025, label: false
+  = f.input :stripe_card_token, as: :hidden
+  = f.submit "Submit Payment", class: 'button'

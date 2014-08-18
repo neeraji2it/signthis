@@ -1,0 +1,10 @@
+$(".signatures").html("<%= j render 'documents/signatures', document: @signature.document.decorate %>");
+
+$(".time").text(function(index, text) {
+  var time, utc;
+  utc = $(this).data().utc;
+  time = new Date(parseInt(utc));
+  if (utc) {
+    return moment(time).format('MMMM Do YYYY, HH:mm:ss');
+  }
+});

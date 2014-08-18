@@ -1,0 +1,21 @@
+@mixin page() {
+  background:                   white;
+}
+
+.page-md {
+  @include page();
+  margin-left:                  grid-width(5);
+  width:                        grid-width(14) + ($gw-gutter * 2);
+}
+
+.page-sm {
+  @include page();
+  margin-left:                  grid-width(8);
+  width:                        grid-width(8) + ($gw-gutter * 2);
+}
+
+h2.with-mark {
+  background-image:             image-url('wevorce-mark-gray.png');
+  background-repeat:            no-repeat;
+  background-position:          right center;
+}

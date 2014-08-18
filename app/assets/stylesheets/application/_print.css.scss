@@ -1,0 +1,66 @@
+header, .document-controls, .flash-container, .controls{
+  display: none;
+}
+
+$page-width: 87%;
+$a4-width: 595pt;
+$a4-height: 930pt;
+body {
+  padding-top: 0;
+  margin-top: 11mm;
+  background-color: white;
+}
+.wrapper {
+  width: $page-width;
+  padding-top: 0;
+  margin: 0 auto;
+}
+p { 
+  font-size: 115%;
+}
+.print_page_separator {
+  padding-top: 50px;
+}
+.signature {
+  zoom: .75;
+}
+
+.page-break {
+  display: block;
+  clear: both;
+  page-break-before: always;
+}
+
+.print-only {
+  display: block;
+}
+
+.page-footer {
+  margin-top: -30pt;
+  width: $a4-width;
+
+  &:last-child {
+    position: absolute;
+    // 3rd page
+    top: $a4-height * 2;
+  }
+  .page-footer-logo {
+    float: right;
+    margin-top: -85px;
+    width: 202px;
+    height: 82px;
+  }
+}
+
+
+body.blueprint-page {
+  padding-top: 0;
+
+  #document_terms {
+    width: calc(100% + 10px);
+  }
+}
+
+.purchase-block {
+  display: none;
+}

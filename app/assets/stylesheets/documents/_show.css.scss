@@ -1,0 +1,85 @@
+.link {
+  display: inline-block;
+  margin-left: $gw-gutter;
+}
+.purchase-block {
+  margin-top: 10px;
+}
+.second_spouse_signature {
+  float: right;
+}
+.signatures {
+  background: white;
+  padding: 5px;
+}
+.first_spouse_signature, .second_spouse_signature {
+  .time, .message {
+    padding-left: 16px;
+  }
+  .time {
+    padding-bottom: 16px;
+  }
+  width: 50%;
+  display: inline-block;
+  .signature_input {
+    width: 100%;
+  }
+  fieldset.actions {
+    min-height: 25px;
+    a {
+      margin-right: $gw-gutter;
+    }
+  }
+}
+
+article.document {
+  em {
+    font-style: normal;
+    text-decoration: underline;
+  }
+  @include text-section;
+
+  ol {
+    li {
+      margin-bottom: 1em;
+    }
+    h4 {
+      display: inline;
+      &:after {
+        content: ":";
+        padding-right: .5em;
+      }
+    }
+    h4 + p {
+      display: inline;
+    }
+  }
+
+  ul li {
+    em {
+      font-style: italic;
+    }
+    ul.with-pad {
+      padding-top: 1em;
+      padding-bottom: 1em;
+    }
+  }
+}
+.documents-show, .documents-public_access {
+  .wrapper {
+    margin-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .controls-footer {
+    background: white;
+    margin-top: 50px;
+    height: 100px;
+  }
+  .controls {
+    padding-right: 16px;
+    padding-top: 16px;
+    max-width: 1088px;
+    margin: 0 auto;
+  }
+}

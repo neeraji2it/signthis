@@ -1,0 +1,9 @@
+.flash-container
+  - if notice
+    #flash-notice.flash
+      = notice
+      i.dismiss &times
+  - if alert
+    #flash-error.flash
+      = alert
+      i.dismiss &times

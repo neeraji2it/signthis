@@ -1,0 +1,77 @@
+h4.text-center Mediation Agreement
+hr
+ol
+  li
+    h4 What's included
+    p Interactive mediation sessions designed to assist you in building a durable divorce agreement. Details are outlined in Exhibit A. Wevorce will work with you to reach and draft an agreement that you can file with the court yourself or send to an attorney(s) of your choosing to review and have filed for you.
+  li
+    h4 What's not included
+    p During the Wevorce Process, neither your Architects nor anyone associated with Wevorce will act as your advocates, counselors, financial advisors, therapists, attorneys, or judges. Any information you may receive should not be taken as advice — it is for informational purposes only. If, in order for you to make informed decisions, you feel it necessary to seek more information or specific legal, financial, or counseling advice, you are free to seek it from any non-Wevorce professional of your choosing.
+  li
+    h4 Confidentiality
+    p The information exchanged during the Wevorce process is confidential and will not be shared outside the Wevorce Process. You agree not to subpoena Wevorce, its employees, or its Architects as witnesses. You agree not to request from Wevorce, its employees, or its Architects, any records, notes, work product, data, or other information in any legal or administrative proceeding.
+  li
+    h4 Family Responsibilities
+    p You agree to participate fully, openly, and honestly with everyone involved in the Wevorce Process. If either partner fails to act in good faith, Wevorce may terminate the Wevorce Process at any time.
+  li
+    h4 Method & Payment
+    p 
+      | You agree to pay to Wevorce the fee for the Wevorce Process as described in Exhibit A. If you cancel a Mediation Session within seventy-two (72) hours or are absent from a Mediation Session, a Cancellation Fee of $120.00 will be charged. If additional services or mediation sessions are required beyond the scope of Exhibit A, additional fees will apply.
+      - if @document.additional_sessions.to_i > 0
+        |  The fee for additional Wevorce sessions is
+        = " $#{@document.additional_sessions}."
+  li
+    h4 Disagreements
+    p If any concerns or disagreements with Wevorce arise, advise your Wevorce Family Architect immediately. Wevorce will schedule a meeting with the stakeholders to discuss. If the disagreement cannot be resolved during that in–person meeting, Wevorce will work with you to mutually select a neutral mediator to mediate the disagreement.
+
+= render 'documents/pdf_page_footer', left: "Pg. 1/#{topages}", right: wevorce_logo, klass: 'page2'
+
+h4.text-center Exhibit A: The Wevorce Blueprint
+hr
+
+ul 
+  li 
+    em Mediation Sessions & included Services:
+    ul.with-pad
+      - document_included_options.each do |option|
+        li = option
+      - if document.first_spouse_detour_meeting?
+        li 
+          span Detour meeting
+          ul
+            li = document.first_spouse_detour_meeting_description
+      - if document.second_spouse_detour_meeting?
+        li
+          span Detour meeting
+          ul
+            li = document.second_spouse_detour_meeting_description
+      - if document.third_detour_meeting?
+        li
+          span Detour meeting
+          ul
+            li = document.third_detour_meeting_description
+      - if document.fourth_detour_meeting_description?
+        li
+          span Detour meeting
+          ul
+            li = document.fourth_detour_meeting_description
+
+      
+  - if document.source.price.present?
+    li
+      em Up Front Pricing
+      ul.with-pad
+        li = document.price
+  - if document.terms.present?
+    li
+      em Terms
+      ul.with-pad
+        li = document.terms
+      
+p Client Mediation Agreement consisting of:
+ul.empty
+  li
+    ul
+      li Client Mediation Agreement; and
+      li Client Exhibit A.
+

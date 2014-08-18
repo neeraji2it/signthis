@@ -1,0 +1,63 @@
+.field_with_errors {
+  select, textarea, input[type="tel"], input[type="text"],
+  input[type="password"], input[type="email"] {
+    border-color:                 $error-border
+  }
+}
+
+.simple_form {
+  .error {
+    clear:                        left;
+    color:                        $error-text;
+    font-size:                    12px;
+    display:                      block;
+    text-align:                   left;
+  }
+  .hint {
+    clear:                        left;
+    color:                        #555;
+    display:                      block;
+    font-size:                    0.8333em;
+    font-style:                   italic;
+    padding-top:                  0.5 * $gw-gutter;
+  }
+}
+
+select, textarea, input[type="tel"], input[type="text"],
+input[type="password"], input[type="email"], input[type="number"] {
+  margin:                       0;
+  display:                      inline-block;
+  color:                        #555555;
+  vertical-align:               middle;
+  border-radius:                0px;
+  background-color:             #ffffff;
+  border:                       1px solid #cccccc;
+
+  &:focus {
+    border-color:                 $focus-border;
+  }
+}
+
+select {
+  -webkit-appearance:           textfield;
+  background:                   image-url('select-arrow-down.png') no-repeat right #fff;
+  overflow:                     hidden;
+  vertical-align:               middle;
+
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=649849
+  -moz-appearance:              textfield;
+  text-indent:                  1px;
+  text-overflow:                '';
+}
+
+label.collection_check_boxes {
+  float:                        none;
+  margin:                       0;
+}
+
+select.ui-datepicker-year {
+  vertical-align:               top;
+  height:                       auto;
+  -webkit-appearance:           menulist;
+  width:                        auto;
+}

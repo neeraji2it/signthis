@@ -1,0 +1,159 @@
+@mixin header-icon {
+  float:                        right;
+  width:                        55px;
+  height:                       55px;
+  text-align:                   center;
+  line-height:                  55px;
+  a {
+    color:                        #ccc;
+  }
+  &.active {
+    background:                   #606060;
+    border-bottom:                none;
+  }
+}
+
+div.header{
+  @include clearfix;
+  overflow: visible;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  min-width: 940px;
+  z-index: 3
+}
+
+header.header{
+  @include clearfix;
+  width:                        100%;
+  background-color: #595959;
+  border-bottom:                1px solid $header-separator;
+
+  ul.nav {
+    list-style:                   none;
+    margin:                       0px;
+    padding:                      0px;
+
+    li.tool {
+      background-color:             $header-background;
+      list-style:                   none;
+      display:                      inline-block;
+      border-left:                  1px solid $header-separator;
+      line-height:                  55px;
+    }
+
+    .logo {
+      padding:                      0px 16px;
+      border-left: none !important;
+      border-right: 1px solid $header-separator;
+    }
+
+    .back-to-dashboard{
+      position:                     relative;
+      margin-left:                  16px;
+      display: inline-block;
+      top: 1px;
+    }
+
+    .title-bar{
+      padding-left:                 16px;
+      border-right: none;
+      border-left: none !important;;
+
+      .case-title {
+        font-size:                    16px;
+        font-weight:                  light;
+        color:                        #ccc;
+      }
+    }
+
+    .notifications, .case-notes, .documents, .quick-reference, .case-documents {
+      @include header-icon;
+
+      a {
+        display:                      block;
+        margin:                       16px auto;
+        margin-top:                   19px;
+      }
+    }
+
+    .notifications {
+      img {
+        margin-top:                   17px;
+      }
+    }
+  }
+}
+
+.popover-content {
+  width:                        100%;
+  min-width:                    940px;
+  top: 56px;
+}
+
+.session-controls {
+  float:                        right;
+  .dropdown {
+    display:                      inline;
+  }
+
+  padding:                      0px 8px;
+
+  a {
+    color:                        $header-text;
+    text-decoration:              none;
+    margin-right:                 16px;
+
+    &:hover {
+      color:                        $wevorce-green;
+      text-decoration:              underline;
+    }
+  }
+
+  ul, li{
+    list-style:                   none;
+    margin-left:                  0px;
+    padding-left:                 0px;
+  }
+
+  li {
+    display:                      block;
+    text-align:                   left;
+    a {
+      color:                        white;
+      display: block;
+      text-decoration:              none;
+      padding-left:                 20px;
+
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+
+  ul {
+    background:                   #464646;
+    display:                      none;
+    position:                     absolute;
+    min-width:                    160px;
+    padding:                      12px 0px;
+    right:                        0;
+    line-height:                  26px;
+  }
+
+  .signed-in {
+    padding-left: 16px;
+  }
+}
+
+.popover.icon-header.icon-header-casenotes {
+  margin-left: 21px !important;
+}
+
+.border-hiding-spacer {
+  display: none;
+  position: absolute;
+  height: 1px;
+  background: #606060;
+}

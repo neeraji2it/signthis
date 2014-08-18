@@ -1,0 +1,17 @@
+<%= simple_form_for(
+  :session, 
+  url: session_path,
+  html: { class: "page-sm clearance-sessions-new" },
+  defaults: { wrapper: :placeholders }
+) do |f| %>
+  <h2 class="with-mark">Log-in</h2>
+  <fieldset>
+    <%= f.input :email, type: :email, input_html: { tabindex: 1, autofocus: true } %>
+    <%= f.input :password, type: :password, input_html: { tabindex: 2 } %>
+    <%= f.submit 'Sign in', class: 'sign-in button' %>
+  </fieldset>
+
+  <fieldset class="actions">
+    <%= link_to "I forgot my password", "http://wevorce-staging.herokuapp.com/passwords/new" %>
+  </fieldset>
+<% end %>

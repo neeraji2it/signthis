@@ -1,0 +1,12 @@
+a {
+  color:                        $wevorce-green;
+  text-decoration:              none;
+
+  &:hover, &:active {
+    text-decoration:              underline;
+  }
+}
+
+.page_number {
+  display: none;
+}

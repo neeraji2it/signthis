@@ -1,0 +1,42 @@
+
+.blueprint-icon {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-right: 1%;
+}
+
+@mixin blueprint-icon($icon, $k: 3.8) {
+    $url: "icons/icon-blueprint/#{$icon}.png";
+    background-image: image-url($url);
+    width: image-width($url) / $k / 1px * 1%;
+    padding-bottom: image-height($url) / $k / 1px * 1%;
+}
+
+.single-architect {
+    @include blueprint-icon("single-architect");
+}
+.double-architect {
+    @include blueprint-icon("double-architect");
+}
+.triple-architect {
+    @include blueprint-icon("triple-architect");
+}
+.trailer {
+    @include blueprint-icon("trailer", 4.378);
+}
+.folders {
+    @include blueprint-icon("folder", 4.378);
+}
+.piggy-bank {
+    @include blueprint-icon("piggy-bank", 4.378);
+}
+.papersheet {
+    @include blueprint-icon("papersheet", 4.378);
+}
+.papersheet-tick {
+    @include blueprint-icon("papersheet-tick", 4.378);
+}
+.support {
+    @include blueprint-icon("support", 7.6);
+    margin-right: 0;
+}
